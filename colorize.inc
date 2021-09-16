@@ -1,8 +1,8 @@
 /*
 
 	Colorize text by pawlo/vawylon
-	Связь Telegram: @vawylon
-	Использовал pawn 3.10.0
+	Г‘ГўГїГ§Гј Telegram: @vawylon
+	Г€Г±ГЇГ®Г«ГјГ§Г®ГўГ Г« pawn 3.10.0
 */
 
 stock Float:floatmod(Float:oper1, Float:oper2)
@@ -31,6 +31,7 @@ stock HSVtoRGB(Float:H, Float:S = 100.0, Float:V= 100.0){
 	else 							return ((floatround((C + m) * 255.0) << 16) | (floatround((0.0 + m) * 255.0) << 8) | floatround((X + m) * 255.0));
 }
 stock HSVtoRGBA(Float:H, A = 0xFF, Float:S = 100.0, Float:V= 100.0) return ((A >> 32) | (HSVtoRGB(H, S, V)<< 8));
+stock HSVtoARGB(Float:H, A = 0xFF, Float:S = 100.0, Float:V= 100.0) return ((A << 24) | (HSVtoRGB(H, S, V)));
 stock ColorazeText(text[], Float: hstart = 0.0, Float: hend = 360.0, sizet = sizeof(text))
 {
 	new pos[64] = {-1, ...};
@@ -46,7 +47,7 @@ stock ColorazeText(text[], Float: hstart = 0.0, Float: hend = 360.0, sizet = siz
 		count ++;
 	}
 	new Float:sect = (hend-hstart)/count, step;
-	for(new i = sizeof(pos)-1; i!= -1; i--) // работает. В принципе и так пойдёт
+	for(new i = sizeof(pos)-1; i!= -1; i--) // Г°Г ГЎГ®ГІГ ГҐГІ. Г‚ ГЇГ°ГЁГ­Г¶ГЁГЇГҐ ГЁ ГІГ ГЄ ГЇГ®Г©Г¤ВёГІ
 	{
 	    if(pos[i] == -1) continue;
 	    strdel(text, pos[i], pos[i]+2);
@@ -64,7 +65,7 @@ stock ColorizeString(string[], Float: hstart = 0.0, Float: hend = 360.0, ssize =
 	new free = ssize - length;
 	new color[9];
 	free = floatround(free/8.0, floatround_ceil);
-	free = floatround(((1.0 * length) / (1.0 * free)), floatround_ceil); // хрень какаято целые числа не получилось разделить. потом исправлю пока так
+	free = floatround(((1.0 * length) / (1.0 * free)), floatround_ceil); // ГµГ°ГҐГ­Гј ГЄГ ГЄГ ГїГІГ® Г¶ГҐГ«Г»ГҐ Г·ГЁГ±Г«Г  Г­ГҐ ГЇГ®Г«ГіГ·ГЁГ«Г®Г±Гј Г°Г Г§Г¤ГҐГ«ГЁГІГј. ГЇГ®ГІГ®Г¬ ГЁГ±ГЇГ°Г ГўГ«Гѕ ГЇГ®ГЄГ  ГІГ ГЄ
 	if(length < free) free = length;
 	new step = floatround(length / free);
 	new Float:roat = (hstart-hend)/step;
