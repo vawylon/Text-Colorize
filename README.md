@@ -1,57 +1,64 @@
+# Text Colorize
 
+![image](https://pawn-wiki.ru/uploads/imgs/img_1618408116__sa-mp-004.png)
 
-https://pawn-wiki.ru/uploads/imgs/img_1618408116__sa-mp-004.png
+> > Hello dear forum members!
+Yesterday there was an idea to make an inclusion that would allow you to paint the text into a multi-colored text.
+It can be used not only in dialogs, but also in Material Text and 3D text.
+I didn't get too steamed up and didn't delve into the deep zen of optimization. stupidly on the fan and on the knee.
+What is the point, you ask. You won't believe it, but color has many formats and one of them is RGB.
+What about HSV?
+There is a formula there is HSV in RGB ok here it is:
 
-
-Здраствуйте дорогие форумчане!
-Вчера появилась идея сделать инклуйд который позволил бы красить текст в разноцветный текст.
-Его можно использовать не только в диалогах, но и в MaterialText так и 3D текст.
-Я сильно не запаривался и не углублялся в глупокий дзен оптимизации. тупа по фану и на коленке.
-В чём суть спросите вы. Не поверите но у цвета есть множество форматов и одно из них RGB. Ок, но как на счёт HSV?
-Тем кто вообще только что познакомился с HSL.
-Читаем эту тему
-%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C
-
-Там формула есть HSV в RGB ок вот она:
-
+```C
 stock HSVtoRGB(Float:H, Float:S = 100.0, Float:V= 100.0)
-H от 0.0 до 360.0!!!
-S - тон
-V - насыщенность
-возвращает RGB цвет
+H from 0.0 to 360.0!!!
+S - tone
+V - saturation
+returns RGB color
+```
 
+```C
 stock HSVtoRGBA(Float:H, A = 0xFF, Float:S = 100.0, Float:V= 100.0)
-возвращает RGBA цвет
+returns RGBA color
+```
 
+---
 
-Красим текст::
+### Coloring the text
 
-ColorazeText(text[], Float: hstart = 0.0, Float: hend = 360.0, sizet = sizeof(text))
-text - текст
-hstar - начало цветового тона
-hend - конец цветового тона
-sizet - максимальная длинна
+### ColorazeText(text[], Float: hstart = 0.0, Float: hend = 360.0, sizet = sizeof(text))
 
+> text - text
+hstart - the beginning of the color tone
+hend - end of the color tone
+size - maximum length
 
-Прошу обратить внимание!!!!!!!!!
-Вы создали массив 128 байт и размер текста будет 120 цвет просто на просто закрасится одним цветом.
-Вы должны брать с запасом. 
+### Please pay attention!
 
-Использование 
+You have created an array of 128 bytes and the text size will be 120, the color will simply be painted over with one color.
+You have to take with a margin.
+
+##### Use
+
+---
+
+```C
 &c1.Text
 &c2.Text
 &c3.Text
 &c4.Text
 &c5.Text
+```
 
-&c - заменится на цвета "{ff0000}" в диапазоне от "hstart" до "hend"
+&c - will be replaced by the colors "{ff0000}" in the range from "hstart" to "hend"
 
-Красим строку:
+### Painting the line
 
 ColorizeString(string[], Float: hstart = 0.0, Float: hend = 360.0, ssize = sizeof(string))
-Всё тоже самое только закрасит строку в диапазон цветов он hstart до hend
+Everything is the same, only it will color the string in the color range from hstart to hend
 
-
+```C
 CMD:colorize(playerid)
 {
 	new string[2048];
@@ -73,5 +80,6 @@ CMD:colorize(playerid)
     ShowPlayerDialog(playerid, 0, DIALOG_STYLE_MSGBOX, head, string, leftbutton, rightbutton);
     return 1;
 }
+```
 
-Автор Я. vawylon/pawlo
+* This repository requires the intervention of experienced specialists
